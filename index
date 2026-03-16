@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ping My Job — Stop losing jobs to missed calls</title>
+  <meta name="description" content="When a customer calls and you can't answer, Ping My Job texts them automatically — captures the job details, and sends them straight to you." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0f0f0f; }
+
+    .jp-wrap { background: #0f0f0f; color: #f0ede6; font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+    .jp-nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 2rem; border-bottom: 1px solid #222; }
+    .jp-logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; color: #f5c842; }
+    .jp-nav-cta { background: #f5c842; color: #0f0f0f; border: none; padding: 10px 20px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; border-radius: 4px; }
+    .jp-nav-cta:hover { opacity: 0.88; }
+    .jp-hero { padding: 5rem 2rem 4rem; max-width: 780px; margin: 0 auto; text-align: center; }
+    .jp-badge { display: inline-block; background: #1e1a00; color: #f5c842; font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 20px; border: 1px solid #f5c84240; margin-bottom: 2rem; letter-spacing: 0.5px; }
+    .jp-h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 10vw, 88px); line-height: 0.95; letter-spacing: 2px; color: #f0ede6; margin: 0 0 1.5rem; }
+    .jp-h1 span { color: #f5c842; }
+    .jp-sub { font-size: 18px; color: #999; line-height: 1.6; max-width: 520px; margin: 0 auto 2.5rem; }
+    .jp-cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .jp-btn-primary { background: #f5c842; color: #0f0f0f; border: none; padding: 14px 28px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; cursor: pointer; border-radius: 4px; }
+    .jp-btn-primary:hover { opacity: 0.88; }
+    .jp-btn-secondary { background: transparent; color: #f0ede6; border: 1px solid #333; padding: 14px 28px; font-family: 'DM Sans', sans-serif; font-size: 15px; cursor: pointer; border-radius: 4px; }
+    .jp-btn-secondary:hover { border-color: #555; }
+    .jp-proof { padding: 0 2rem 3rem; text-align: center; }
+    .jp-avatars { display: flex; justify-content: center; align-items: center; }
+    .jp-avatar { width: 36px; height: 36px; border-radius: 50%; background: #222; border: 2px solid #0f0f0f; margin-left: -8px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: #f5c842; }
+    .jp-avatar:first-child { margin-left: 0; }
+    .jp-count { font-size: 13px; color: #666; margin-left: 12px; }
+    .jp-how { padding: 4rem 2rem; max-width: 900px; margin: 0 auto; }
+    .jp-section-label { font-size: 12px; font-weight: 500; color: #f5c842; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; }
+    .jp-h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 5vw, 48px); letter-spacing: 1px; color: #f0ede6; margin: 0 0 3rem; }
+    .jp-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: #1a1a1a; border: 1px solid #1a1a1a; border-radius: 8px; overflow: hidden; }
+    .jp-step { background: #111; padding: 2rem; }
+    .jp-step-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: #f5c842; line-height: 1; margin-bottom: 1rem; }
+    .jp-step-title { font-size: 15px; font-weight: 500; color: #f0ede6; margin-bottom: 0.5rem; }
+    .jp-step-body { font-size: 14px; color: #666; line-height: 1.6; }
+    .jp-phone-demo { padding: 2rem 2rem 4rem; max-width: 480px; margin: 0 auto; }
+    .jp-phone { background: #111; border: 1px solid #222; border-radius: 16px; padding: 1.5rem; }
+    .jp-phone-label { font-size: 12px; color: #555; margin-bottom: 1rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+    .jp-msg { margin-bottom: 12px; }
+    .jp-msg-bubble { display: inline-block; padding: 10px 14px; border-radius: 12px; font-size: 14px; line-height: 1.5; max-width: 80%; }
+    .jp-msg-in .jp-msg-bubble { background: #1e1e1e; color: #ccc; border-radius: 12px 12px 12px 2px; }
+    .jp-msg-out { text-align: right; }
+    .jp-msg-out .jp-msg-bubble { background: #f5c842; color: #0f0f0f; border-radius: 12px 12px 2px 12px; }
+    .jp-msg-time { font-size: 11px; color: #444; margin-top: 4px; padding: 0 4px; }
+    .jp-notify { background: #1a1800; border: 1px solid #f5c84230; border-radius: 8px; padding: 1rem; margin-top: 1.5rem; }
+    .jp-notify-label { font-size: 11px; color: #f5c842; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .jp-notify-body { font-size: 13px; color: #999; line-height: 1.6; }
+    .jp-notify-body strong { color: #f0ede6; font-weight: 500; }
+    .jp-pricing { padding: 4rem 2rem; max-width: 500px; margin: 0 auto; text-align: center; }
+    .jp-price-card { background: #111; border: 1px solid #f5c84240; border-radius: 12px; padding: 2.5rem 2rem; }
+    .jp-price-amount { font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: #f5c842; line-height: 1; }
+    .jp-price-per { font-size: 14px; color: #555; margin-bottom: 1.5rem; }
+    .jp-features { list-style: none; padding: 0; margin: 0 0 2rem; text-align: left; }
+    .jp-features li { font-size: 14px; color: #999; padding: 8px 0; border-bottom: 1px solid #1a1a1a; display: flex; align-items: center; gap: 10px; }
+    .jp-features li:last-child { border-bottom: none; }
+    .jp-check { width: 16px; height: 16px; background: #f5c842; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .jp-check::after { content: ''; display: block; width: 4px; height: 7px; border-right: 1.5px solid #0f0f0f; border-bottom: 1.5px solid #0f0f0f; transform: rotate(45deg) translate(-1px, -1px); }
+    .jp-guarantee { font-size: 13px; color: #555; margin-top: 1rem; }
+    .jp-trust { padding: 3rem 2rem 4rem; max-width: 900px; margin: 0 auto; }
+    .jp-trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+    .jp-trust-item { text-align: center; padding: 1.5rem; background: #111; border-radius: 8px; border: 1px solid #1a1a1a; }
+    .jp-trust-icon { font-size: 24px; margin-bottom: 0.75rem; }
+    .jp-trust-title { font-size: 14px; font-weight: 500; color: #f0ede6; margin-bottom: 0.25rem; }
+    .jp-trust-body { font-size: 13px; color: #555; line-height: 1.5; }
+    .jp-capture { padding: 4rem 2rem; max-width: 560px; margin: 0 auto; text-align: center; }
+    .jp-capture-card { background: #111; border: 1px solid #f5c84240; border-radius: 12px; padding: 2.5rem 2rem; }
+    .jp-capture-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 1px; color: #f0ede6; margin: 0 0 0.5rem; }
+    .jp-capture-card p { font-size: 15px; color: #666; margin: 0 0 1.5rem; line-height: 1.6; }
+    .jp-email-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .jp-email-input { flex: 1; min-width: 200px; height: 46px; background: #1a1a1a; border: 1px solid #333; border-radius: 4px; padding: 0 1rem; font-size: 14px; color: #f0ede6; font-family: 'DM Sans', sans-serif; outline: none; }
+    .jp-email-input::placeholder { color: #444; }
+    .jp-email-input:focus { border-color: #f5c842; }
+    .jp-email-btn { height: 46px; padding: 0 1.5rem; background: #f5c842; color: #0f0f0f; border: none; border-radius: 4px; font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; white-space: nowrap; }
+    .jp-email-btn:hover { opacity: 0.88; }
+    .jp-capture-note { font-size: 12px; color: #444; margin-top: 0.75rem; }
+    .jp-capture-success { display: none; font-size: 14px; color: #f5c842; margin-top: 1rem; }
+    .jp-footer { padding: 2rem; border-top: 1px solid #1a1a1a; text-align: center; }
+    .jp-footer p { font-size: 13px; color: #444; margin-top: 0.5rem; }
+    .jp-footer a { color: #f5c842; text-decoration: none; }
+    .jp-divider { height: 1px; background: #1a1a1a; margin: 0 2rem; }
+  </style>
+</head>
+<body>
+<div class="jp-wrap">
+
+  <nav class="jp-nav">
+    <div class="jp-logo">Ping My Job</div>
+    <button class="jp-nav-cta" onclick="document.getElementById('jp-capture-section').scrollIntoView({behavior:'smooth'})">Get early access</button>
+  </nav>
+
+  <section class="jp-hero">
+    <div class="jp-badge">For UK tradespeople</div>
+    <h1 class="jp-h1">Stop losing jobs<br>to <span>missed calls</span></h1>
+    <p class="jp-sub">When a customer calls and you can't answer, Ping My Job texts them automatically — captures the job details, and sends them straight to you.</p>
+    <div class="jp-cta-row">
+      <button class="jp-btn-primary" onclick="document.getElementById('jp-capture-section').scrollIntoView({behavior:'smooth'})">Get early access</button>
+      <button class="jp-btn-secondary" onclick="document.getElementById('jp-how-section').scrollIntoView({behavior:'smooth'})">See how it works</button>
+    </div>
+  </section>
+
+  <div class="jp-proof">
+    <div class="jp-avatars">
+      <div class="jp-avatar">MP</div>
+      <div class="jp-avatar">JH</div>
+      <div class="jp-avatar">RB</div>
+      <div class="jp-avatar">TW</div>
+      <span class="jp-count">Trusted by tradespeople across the UK</span>
+    </div>
+  </div>
+
+  <div class="jp-divider"></div>
+
+  <section class="jp-how" id="jp-how-section">
+    <div class="jp-section-label">How it works</div>
+    <h2 class="jp-h2">Three steps.<br>Zero hassle.</h2>
+    <div class="jp-steps">
+      <div class="jp-step">
+        <div class="jp-step-num">01</div>
+        <div class="jp-step-title">You miss a call</div>
+        <div class="jp-step-body">You're on a job. Can't answer. Happens every day.</div>
+      </div>
+      <div class="jp-step">
+        <div class="jp-step-num">02</div>
+        <div class="jp-step-title">Customer gets a text</div>
+        <div class="jp-step-body">Ping My Job instantly sends them a friendly SMS asking what they need.</div>
+      </div>
+      <div class="jp-step">
+        <div class="jp-step-num">03</div>
+        <div class="jp-step-title">You get the job details</div>
+        <div class="jp-step-body">Their reply lands straight on your phone. Call them back when you're ready.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="jp-phone-demo">
+    <div class="jp-phone">
+      <div class="jp-phone-label">What your customer sees</div>
+      <div class="jp-msg jp-msg-in">
+        <div class="jp-msg-bubble">Hi, sorry we missed your call — we're on a job right now. What do you need and where are you based? We'll call you straight back.</div>
+        <div class="jp-msg-time">Ping My Job • just now</div>
+      </div>
+      <div class="jp-msg jp-msg-out">
+        <div class="jp-msg-bubble">Boiler not working, no hot water. CV34. Quite urgent</div>
+        <div class="jp-msg-time">Customer • 1 min ago</div>
+      </div>
+      <div class="jp-notify">
+        <div class="jp-notify-label">Your notification</div>
+        <div class="jp-notify-body">
+          <strong>New enquiry</strong><br>
+          Issue: Boiler not working, no hot water<br>
+          Location: CV34<br>
+          Urgency: Urgent<br>
+          <strong>07911 234567</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="jp-divider"></div>
+
+  <section class="jp-pricing">
+    <div class="jp-section-label">Pricing</div>
+    <h2 class="jp-h2">Simple pricing</h2>
+    <div class="jp-price-card">
+      <div class="jp-price-amount">£199</div>
+      <div class="jp-price-per">per month</div>
+      <ul class="jp-features">
+        <li><span class="jp-check"></span>Missed call SMS — sent instantly</li>
+        <li><span class="jp-check"></span>Job details captured automatically</li>
+        <li><span class="jp-check"></span>Notification straight to your phone</li>
+        <li><span class="jp-check"></span>Simple dashboard — all enquiries in one place</li>
+        <li><span class="jp-check"></span>Set up in under 10 minutes</li>
+        <li><span class="jp-check"></span>Cancel anytime</li>
+      </ul>
+      <button class="jp-btn-primary" style="width:100%; padding: 16px;" onclick="document.getElementById('jp-capture-section').scrollIntoView({behavior:'smooth'})">Get early access</button>
+      <p class="jp-guarantee">14-day free trial. No card required.</p>
+    </div>
+  </section>
+
+  <div class="jp-divider"></div>
+
+  <section class="jp-trust">
+    <div class="jp-section-label" style="text-align:center">Why tradespeople trust it</div>
+    <h2 class="jp-h2" style="text-align:center; margin-bottom: 2rem;">Built for the way<br>you actually work</h2>
+    <div class="jp-trust-grid">
+      <div class="jp-trust-item">
+        <div class="jp-trust-icon">🔒</div>
+        <div class="jp-trust-title">Your number stays yours</div>
+        <div class="jp-trust-body">No porting. No changes. Turn it off in 5 seconds any time.</div>
+      </div>
+      <div class="jp-trust-item">
+        <div class="jp-trust-icon">⚡</div>
+        <div class="jp-trust-title">Live in 10 minutes</div>
+        <div class="jp-trust-body">Sign up, follow two steps on your phone, done.</div>
+      </div>
+      <div class="jp-trust-item">
+        <div class="jp-trust-icon">📱</div>
+        <div class="jp-trust-title">Works on any phone</div>
+        <div class="jp-trust-body">iPhone or Android. Any UK network. No app to download.</div>
+      </div>
+      <div class="jp-trust-item">
+        <div class="jp-trust-icon">💷</div>
+        <div class="jp-trust-title">Pays for itself fast</div>
+        <div class="jp-trust-body">One recovered job a month covers the cost. Most see that in week one.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="jp-divider"></div>
+
+  <section class="jp-capture" id="jp-capture-section">
+    <div class="jp-capture-card">
+      <div class="jp-section-label">Early access</div>
+      <h3>Be first to know</h3>
+      <p>We're launching soon. Leave your email and we'll be in touch when you can get started — no spam, no hassle.</p>
+      <div class="jp-email-row">
+        <input class="jp-email-input" type="email" placeholder="your@email.com" id="jp-email" />
+        <button class="jp-email-btn" onclick="handleCapture()">Notify me</button>
+      </div>
+      <p class="jp-capture-note">No spam. Unsubscribe anytime.</p>
+      <p class="jp-capture-success" id="jp-success">You're on the list. We'll be in touch shortly.</p>
+    </div>
+  </section>
+
+  <div class="jp-divider"></div>
+
+  <footer class="jp-footer">
+    <div class="jp-logo">Ping My Job</div>
+    <p>Questions? Email <a href="mailto:hello@pingmyjob.com">hello@pingmyjob.com</a></p>
+    <p>© 2026 Ping My Job. All rights reserved.</p>
+  </footer>
+
+</div>
+<script>
+  function handleCapture() {
+    const email = document.getElementById('jp-email').value;
+    const success = document.getElementById('jp-success');
+    if (!email || !email.includes('@')) {
+      document.getElementById('jp-email').style.borderColor = '#c0392b';
+      return;
+    }
+    document.getElementById('jp-email').style.borderColor = '#f5c842';
+    document.querySelector('.jp-email-btn').disabled = true;
+    document.querySelector('.jp-email-btn').textContent = 'Done';
+    success.style.display = 'block';
+  }
+</script>
+</body>
+</html>
