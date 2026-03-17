@@ -11,7 +11,6 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #0f0f0f; }
-
     .jp-wrap { background: #0f0f0f; color: #f0ede6; font-family: 'DM Sans', sans-serif; min-height: 100vh; }
     .jp-nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 2rem; border-bottom: 1px solid #222; }
     .jp-logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; color: #f5c842; }
@@ -53,6 +52,13 @@
     .jp-notify-label { font-size: 11px; color: #f5c842; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem; }
     .jp-notify-body { font-size: 13px; color: #999; line-height: 1.6; }
     .jp-notify-body strong { color: #f0ede6; font-weight: 500; }
+    .jp-voicemail { padding: 4rem 2rem; max-width: 900px; margin: 0 auto; }
+    .jp-vm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: #1a1a1a; border: 1px solid #1a1a1a; border-radius: 8px; overflow: hidden; margin-bottom: 2rem; }
+    .jp-vm-stat { background: #111; padding: 2rem; text-align: center; }
+    .jp-vm-number { font-family: 'Bebas Neue', sans-serif; font-size: 64px; color: #f5c842; line-height: 1; margin-bottom: 0.5rem; }
+    .jp-vm-label { font-size: 14px; color: #666; line-height: 1.5; }
+    .jp-vm-body { font-size: 15px; color: #666; line-height: 1.7; max-width: 640px; }
+    .jp-vm-body strong { color: #f0ede6; font-weight: 500; }
     .jp-pricing { padding: 4rem 2rem; max-width: 500px; margin: 0 auto; text-align: center; }
     .jp-price-card { background: #111; border: 1px solid #f5c84240; border-radius: 12px; padding: 2.5rem 2rem; }
     .jp-price-amount { font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: #f5c842; line-height: 1; }
@@ -165,11 +171,33 @@
 
   <div class="jp-divider"></div>
 
+  <section class="jp-voicemail">
+    <div class="jp-section-label">Why voicemail isn't enough</div>
+    <h2 class="jp-h2">Most customers don't<br>leave voicemails.</h2>
+    <div class="jp-vm-grid">
+      <div class="jp-vm-stat">
+        <div class="jp-vm-number">80%</div>
+        <div class="jp-vm-label">of callers hang up without leaving a voicemail</div>
+      </div>
+      <div class="jp-vm-stat">
+        <div class="jp-vm-number">89%</div>
+        <div class="jp-vm-label">of callers with an urgent need don't leave a voicemail</div>
+      </div>
+      <div class="jp-vm-stat">
+        <div class="jp-vm-number">85%</div>
+        <div class="jp-vm-label">of callers won't try again if you don't answer first time</div>
+      </div>
+    </div>
+    <p class="jp-vm-body">Voicemail feels like a dead end. Customers calling a plumber or heating engineer don't want to leave a message and hope for the best — <strong>they want a response right now.</strong> If they don't get one, they call the next person on Google. Ping My Job replaces the dead end with an instant text conversation, giving you a real chance to win the job.</p>
+  </section>
+
+  <div class="jp-divider"></div>
+
   <section class="jp-pricing">
     <div class="jp-section-label">Pricing</div>
     <h2 class="jp-h2">Simple pricing</h2>
     <div class="jp-price-card">
-      <div class="jp-price-amount">£199</div>
+      <div class="jp-price-amount">£49</div>
       <div class="jp-price-per">per month</div>
       <ul class="jp-features">
         <li><span class="jp-check"></span>Missed call SMS — sent instantly</li>
