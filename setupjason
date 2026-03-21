@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Set Up — Ping My Job</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f0f0f;
+      --yellow: #f5c842;
+      --text: #f0ede6;
+      --muted: #888;
+      --card: #1a1a1a;
+      --border: #2a2a2a;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 2px;
+      color: var(--yellow);
+      text-decoration: none;
+    }
+
+    .nav-help {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .nav-help a {
+      color: var(--yellow);
+      text-decoration: none;
+    }
+
+    /* MAIN */
+    main {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+
+    .step-badge {
+      display: inline-block;
+      background: #1e1a00;
+      color: var(--yellow);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(245,200,66,0.25);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(44px, 10vw, 64px);
+      line-height: 0.95;
+      letter-spacing: 2px;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    h1 span { color: var(--yellow); }
+
+    .intro {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-label {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .card h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 1.5px;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+
+    .btn:active { transform: scale(0.98); }
+
+    .btn-activate {
+      background: var(--yellow);
+      color: #0f0f0f;
+    }
+
+    .btn-activate:hover { opacity: 0.9; }
+
+    .btn-cancel {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .btn-cancel:hover { color: var(--text); border-color: #555; }
+
+    /* DIVIDER */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.75rem 0;
+      color: var(--border);
+      font-size: 12px;
+      color: #444;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* REASSURANCE */
+    .reassurance {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 1.75rem;
+    }
+
+    .reassurance-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .reassurance-item::before {
+      content: '✓';
+      color: var(--yellow);
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: #555;
+    }
+
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="logo">Ping My Job</a>
+    <span class="nav-help">Need help? <a href="/cdn-cgi/l/email-protection#365e535a5a5976465f58515b4f5c59541855595b"><span class="__cf_email__" data-cfemail="2d45484141426d5d44434a405447424f034e4240">[email&#160;protected]</span></a></span>
+  </nav>
+
+  <main>
+    <h1>You're almost <span>live.</span></h1>
+
+    <p class="intro">
+      When someone calls and you don't answer, they'll automatically receive this text:
+    </p>
+
+    <!-- SMS PREVIEW -->
+    <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:10px;padding:1.25rem;margin-bottom:2rem;">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#555;margin-bottom:0.75rem;">Message your missed callers will receive</div>
+      <div style="display:flex;align-items:flex-start;gap:0.75rem;">
+        <div style="background:#f5c842;border-radius:50%;width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:16px;color:#0f0f0f;">J</div>
+        <div style="background:#2a2a2a;border-radius:4px 12px 12px 12px;padding:0.75rem 1rem;font-size:14px;color:#f0ede6;line-height:1.5;">
+          Hi, this is Jason. Sorry I missed your call — I'm on a job at the moment. Please text me your requirements and postcode and I'll get back to you shortly.
+        </div>
+      </div>
+    </div>
+
+    <div class="step-badge">Setup — 1 step</div>
+
+    <p class="intro" style="margin-bottom:1.5rem;">
+      Now activate your call forwarding below — takes 5 seconds.
+    </p>
+
+    <!-- ACTIVATE CARD -->
+    <div class="card">
+      <div class="card-label">Step 1 of 1</div>
+      <h2>Activate</h2>
+      <p>This tells your phone to forward missed calls to Ping My Job. Your number doesn't change — this only kicks in when you don't answer.</p>
+      <div style="background:#111;border:1px solid #333;border-radius:6px;padding:14px 16px;font-family:monospace;font-size:18px;color:var(--yellow);letter-spacing:1px;text-align:center;margin-bottom:0.75rem;">
+        **61*07450304600*11*10#
+      </div>
+      <button class="btn btn-activate" onclick="copyCode()" id="copyBtn">
+        Tap to Copy Code
+      </button>
+      <p style="font-size:14px;color:#999;text-align:center;margin-top:0.6rem;">Then open your phone dialler app, press and hold in the number field, tap Paste, and press call</p>
+      <script>
+        function copyCode() {
+          navigator.clipboard.writeText('**61*07450304600*11*10#').then(function() {
+            var btn = document.getElementById('copyBtn');
+            btn.textContent = '✓ Copied!';
+            btn.style.background = '#2a4a1a';
+            btn.style.color = '#7fcc44';
+            setTimeout(function() {
+              btn.textContent = 'Tap to Copy Code';
+              btn.style.background = '';
+              btn.style.color = '';
+            }, 2500);
+          });
+        }
+      </script>
+    </div>
+
+    <div class="divider">want to turn it off?</div>
+
+    <!-- CANCEL CARD -->
+    <div class="card">
+      <div class="card-label">Turn off anytime</div>
+      <h2>Cancel</h2>
+      <p>Tap below to remove call forwarding instantly. Everything goes back to exactly how it was.</p>
+      <div style="background:#111;border:1px solid #333;border-radius:6px;padding:14px 16px;font-family:monospace;font-size:18px;color:var(--muted);letter-spacing:1px;text-align:center;margin-bottom:0.75rem;">
+        ##61#
+      </div>
+      <button class="btn btn-cancel" onclick="copyCancel()" id="cancelBtn">
+        Tap to Copy Cancel Code
+      </button>
+      <p style="font-size:14px;color:#999;text-align:center;margin-top:0.6rem;">Then open your phone dialler app, press and hold in the number field, tap Paste, and press call</p>
+      <script>
+        function copyCancel() {
+          navigator.clipboard.writeText('##61#').then(function() {
+            var btn = document.getElementById('cancelBtn');
+            btn.textContent = '✓ Copied!';
+            setTimeout(function() {
+              btn.textContent = 'Tap to Copy Cancel Code';
+            }, 2500);
+          });
+        }
+      </script>
+    </div>
+
+    <!-- REASSURANCE -->
+    <div class="reassurance">
+      <div class="reassurance-item">Your number stays the same — nothing visible changes</div>
+      <div class="reassurance-item">Only activates when you don't answer</div>
+      <div class="reassurance-item">Cancel in 5 seconds at any time</div>
+      <div class="reassurance-item">Questions? Email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3a525f5656557a4a53545d574350555814595557">[email&#160;protected]</a></div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div style
