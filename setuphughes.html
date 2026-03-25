@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Call Forwarding Setup</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f3ef;
+      --card: #ffffff;
+      --text: #1a1a1a;
+      --muted: #6b6b6b;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --border: #e4e0d8;
+      --success: #16a34a;
+      --success-light: #f0fdf4;
+      --number-bg: #1a1a1a;
+      --number-text: #ffffff;
+      --step-bg: #fafaf9;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .header {
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .header p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .header {
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .header p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+
+    .card-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    /* Number display */
+    .number-block {
+      background: var(--number-bg);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .number-display {
+      font-family: 'DM Mono', monospace;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--number-text);
+      letter-spacing: 0.02em;
+    }
+
+    .copy-btn {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .copy-btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .copy-btn.copied {
+      background: var(--success);
+      border-color: var(--success);
+    }
+
+    /* Divert code */
+    .divert-block {
+      background: var(--accent-light);
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .divert-code {
+      font-family: 'DM Mono', monospace;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+
+    .copy-btn-blue {
+      background: var(--accent);
+      border: none;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .copy-btn-blue:hover { opacity: 0.9; }
+    .copy-btn-blue.copied { background: var(--success); }
+
+    .divert-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+      line-height: 1.5;
+    }
+
+    /* Steps */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .step {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: var(--step-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .step:hover {
+      border-color: #c7d2fe;
+      background: #fafbff;
+    }
+
+    .step.done {
+      border-color: #bbf7d0;
+      background: var(--success-light);
+    }
+
+    .step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--border);
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .step.done .step-num {
+      background: var(--success);
+      color: white;
+    }
+
+    .step.done .step-num::after {
+      content: '✓';
+    }
+
+    .step:not(.done) .step-num-inner { display: block; }
+    .step.done .step-num-inner { display: none; }
+
+    .step-content h3 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .step-content p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Tap to call */
+    .tap-btn {
+      display: block;
+      width: 100%;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-top: 1rem;
+      transition: opacity 0.2s;
+      letter-spacing: -0.01em;
+    }
+
+    .tap-btn:hover { opacity: 0.9; }
+
+    .tap-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 0.6rem;
+      line-height: 1.5;
+    }
+
+    /* Cancel */
+    .cancel-block {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+
+    .cancel-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .cancel-code {
+      font-family: 'DM Mono', monospace;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .cancel-link {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.7rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .cancel-link:hover {
+      border-color: #aaa;
+      color: var(--text);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .header { animation-delay: 0s; }
+    .cards .card:nth-child(1) { animation-delay: 0.15s; }
+    .cards .card:nth-child(2) { animation-delay: 0.25s; }
+    .cards .card:nth-child(3) { animation-delay: 0.35s; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Missed Call Capture</h1>
+      <p>Getting set up...</p>
+    </div>
+
+    <div class="cards">
+      <!-- Step 2: Activate -->
+      <div class="card">
+        <div class="card-label">Activate forwarding</div>
+        <div class="divert-block">
+          <span class="divert-code">**61*+447455711971*11*15#</span>
+          <button class="copy-btn-blue" onclick="copyText('**61*+447455711971*11*15#', this)">Copy</button>
+        </div>
+        <div class="divert-note">Open your phone's dialler, type the code above exactly, then press call. It activates silently in seconds.</div>
+
+        <a href="tel:**61*+447455711971*11*15%23" class="tap-btn">
+          📞 Tap to activate on this phone
+        </a>
+        <div class="tap-note">On mobile? Just tap the button above — it opens your dialler pre-filled. Then press call.</div>
+
+        <div class="cancel-block">
+          <div>
+            <div class="cancel-label">To cancel forwarding at any time</div>
+            <div class="cancel-code">##61#</div>
+          </div>
+          <a href="tel:##61#" class="cancel-link">Tap to cancel</a>
+        </div>
+      </div>
+
+      <!-- Step 3: Checklist -->
+      <div class="card">
+        <div class="card-label">Setup checklist</div>
+        <div class="steps">
+          <div class="step" onclick="toggleStep(this)">
+            <div class="step-num"><span class="step-num-inner">1</span></div>
+            <div class="step-content">
+              <h3>Divert code entered</h3>
+              <p>Typed the code into your dialler and pressed call</p>
+            </div>
+          </div>
+          <div class="step" onclick="toggleStep(this)">
+            <div class="step-num"><span class="step-num-inner">2</span></div>
+            <div class="step-content">
+              <h3>Test call made</h3>
+              <p>Called your number from another phone and didn't answer — heard the message play</p>
+            </div>
+          </div>
+          <div class="step" onclick="toggleStep(this)">
+            <div class="step-num"><span class="step-num-inner">3</span></div>
+            <div class="step-content">
+              <h3>SMS received</h3>
+              <p>The test caller received a text back after hanging up</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function copyText(text, btn) {
+      navigator.clipboard.writeText(text).then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    function toggleStep(el) {
+      el.classList.toggle('done');
+    }
+  </script>
+</body>
+</html>
